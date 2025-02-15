@@ -1,0 +1,12 @@
+.analytics-page {
+        margin: 20dvh 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20rem;
+}
+
+.analytics-page__line {
+        width: 100dvw;
+}

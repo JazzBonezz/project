@@ -1,0 +1,118 @@
+.postCard {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: start;
+    transition: 0.1s ease;
+    gap: 2rem;
+    position: relative;
+
+}
+
+.postCard:hover {
+    background-color: #181c1f;
+}
+
+.postCard__title {
+    margin: 0 0 1rem 0;
+    font-size: 2rem;
+}
+
+.postCard__separator {
+    background-color: #26282a;
+    margin: 0;
+}
+
+.postCard__reactions {
+    width: fit-content;
+    background-color: #1f1f1f;
+    border-radius: 2px;
+    font-size: 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.postCard__reactionButton {
+    background-color: transparent;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.postCard__reactionButton.active {
+    background-color: #d93900;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.postCard__reactionButton:active {
+    color: #181c1f;
+}
+
+.postCard__charts {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+
+/* ------------------------------------------------------------- */
+
+.postCard__bottomSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.postCard__reactions {
+    width: 100%;
+    justify-content: center;
+}
+
+.postCard__views {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    background-color: #d93900;
+    width: 20%;
+}
+
+@media (max-width: 600px) {
+    .postCard__bottomSection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .postCard__views {
+        position: static;
+        font-size: 15px;
+        width: 20%;
+    }
+}
+
+@media (max-width: 475px) {
+    .postCard__bottomSection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .postCard__views {
+        position: static;
+        font-size: 15px;
+        width: 30%;
+    }
+}

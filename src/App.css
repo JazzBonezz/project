@@ -1,0 +1,46 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+
+button {
+  color: white;
+  padding: 10px;
+  transition: .3s ease;
+  flex: 1;
+}
+
+button:hover {
+  background-color: white;
+  color: gray;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+
+button {
+  color: white;
+  padding: 10px;
+  transition: .3s ease;
+  flex: 1;
+}
+
+button:hover:not(:disabled) {
+  background-color: white;
+  color: gray;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+}
+
