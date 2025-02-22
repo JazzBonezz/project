@@ -1,6 +1,6 @@
 import styles from './LogInForm.module.css';
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useNavigate} from "react-router-dom";
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
     username: string;
@@ -23,17 +23,20 @@ const LogInForm = () => {
 
         if (userData) {
             const parsedUserData = JSON.parse(userData);
-            if (data.username === parsedUserData.username && data.password === parsedUserData.password) {
-                localStorage.setItem("username", data.username);
+            if (
+                data.username === parsedUserData.username &&
+                data.password === parsedUserData.password
+            ) {
+                localStorage.setItem('username', data.username);
 
-                window.dispatchEvent(new Event("storage"));
+                window.dispatchEvent(new Event('storage'));
 
                 navigate('/feed');
             } else {
-                alert("Invalid username or password");
+                alert('Invalid username or password');
             }
         } else {
-            alert("User not found");
+            alert('User not found');
         }
     };
 
@@ -42,52 +45,57 @@ const LogInForm = () => {
             <h1>Login</h1>
             <div className={styles['inputs']}>
                 <label>
-                    Username:<br />
+                    Username:
+                    <br />
                     <input
                         type="text"
                         {...register('username', {
-                            required: "Enter name!",
+                            required: 'Enter name!',
                             minLength: {
                                 value: 3,
-                                message: "Name must be at least 3 characters long"
+                                message: 'Name must be at least 3 characters long',
                             },
                             maxLength: {
                                 value: 20,
-                                message: "Name must be no more than 20 characters long"
+                                message: 'Name must be no more than 20 characters long',
                             },
                             pattern: {
                                 value: /^[A-Za-z]+$/i,
-                                message: "Name must contain only letters"
-                            }
+                                message: 'Name must contain only letters',
+                            },
                         })}
                     />
                 </label>
 
                 <label>
-                    Password:<br />
+                    Password:
+                    <br />
                     <input
                         type="password"
                         {...register('password', {
-                            required: "Enter password",
+                            required: 'Enter password',
                             minLength: {
                                 value: 8,
-                                message: "Password must be at least 8 characters long"
+                                message: 'Password must be at least 8 characters long',
                             },
                             maxLength: {
                                 value: 20,
-                                message: "Password must be no more than 20 characters long"
+                                message: 'Password must be no more than 20 characters long',
                             },
                             pattern: {
                                 value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-                                message: "Password must contain at least one letter, one number, and one special character"
-                            }
+                                message:
+                                    'Password must contain at least one letter, one number, and one special character',
+                            },
                         })}
                     />
                 </label>
             </div>
 
             <div className={styles['buttons']}>
-                <button type="submit" disabled={!isValid}>Submit</button>
+                <button type="submit" disabled={!isValid}>
+                    Submit
+                </button>
             </div>
 
             <div className={styles['error-text']}>

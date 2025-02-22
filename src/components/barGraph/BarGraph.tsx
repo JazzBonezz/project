@@ -1,6 +1,6 @@
-import styles from './BarGraph.module.css'
+import styles from './BarGraph.module.css';
 import { Bar } from 'react-chartjs-2';
-import { usePostsData } from "../../hooks/useChartData.ts";
+import { usePostsData } from '../../hooks/useChartData.ts';
 
 import {
     Chart as ChartJS,
@@ -50,21 +50,19 @@ const BarGraph = () => {
         ],
     };
 
-
     const barOptions = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'bottom' as const,
-            }
-        }
-    }
+            },
+        },
+    };
 
     return (
-        <div className={styles["bar-graph"]}>
-                    <Bar data={barData} options={barOptions} />
-
+        <div className={styles['bar-graph']}>
+            <Bar data={barData} options={barOptions} />
         </div>
     );
 };

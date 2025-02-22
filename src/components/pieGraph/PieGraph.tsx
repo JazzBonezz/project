@@ -1,6 +1,6 @@
 import { Pie } from 'react-chartjs-2';
-import styles from './PieGraph.module.css'
-import { usePostsData } from "../../hooks/useChartData.ts";
+import styles from './PieGraph.module.css';
+import { usePostsData } from '../../hooks/useChartData.ts';
 
 import {
     Chart as ChartJS,
@@ -52,13 +52,13 @@ const PieGraph = () => {
         plugins: {
             legend: {
                 position: 'bottom' as const,
-            }
-        }
-    }
+            },
+        },
+    };
 
     return (
-        <div className={styles["pie-graph"]}>
-                    <Pie data={pieData} options={pieOptions} />
+        <div className={styles['pie-graph']}>
+            <Pie data={pieData} options={pieOptions} />
         </div>
     );
 };

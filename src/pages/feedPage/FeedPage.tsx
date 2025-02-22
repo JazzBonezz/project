@@ -1,4 +1,4 @@
-import PostList from "../../widgets/postList/PostList.tsx";
+import PostList from '../../widgets/postList/PostList.tsx';
 
 const FeedPage = () => {
     return (

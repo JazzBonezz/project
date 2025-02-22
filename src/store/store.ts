@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import axios from "axios";
+import { create } from 'zustand';
+import axios from 'axios';
 
 type PostType = {
     id: number;
@@ -12,7 +12,7 @@ type PostType = {
     };
     liked?: boolean;
     disliked?: boolean;
-}
+};
 
 interface PostState {
     posts: PostType[];
@@ -32,7 +32,7 @@ export const useStore = create<PostState>((set) => ({
     fetchPosts: async () => {
         set({ isLoading: true });
         try {
-            const response = await axios.get("https://dummyjson.com/posts");
+            const response = await axios.get('https://dummyjson.com/posts');
             const posts = response.data.posts;
 
             const updatedPosts = posts.map((post: PostType) => {
@@ -46,7 +46,7 @@ export const useStore = create<PostState>((set) => ({
                             dislikes: dislikes ?? post.reactions.dislikes,
                         },
                         liked,
-                        disliked
+                        disliked,
                     };
                 }
                 return { ...post, liked: false, disliked: false };
@@ -55,7 +55,7 @@ export const useStore = create<PostState>((set) => ({
             set({ posts: updatedPosts, isLoading: false });
         } catch (error) {
             set({
-                error: error instanceof Error ? error.message : "Unknown error",
+                error: error instanceof Error ? error.message : 'Unknown error',
                 isLoading: false,
             });
         }
@@ -71,12 +71,15 @@ export const useStore = create<PostState>((set) => ({
                     const newDislikes = post.reactions.dislikes - (post.disliked ? 1 : 0);
 
                     // Сохраняем состояние в localStorage
-                    localStorage.setItem(`post-${postId}-reactions`, JSON.stringify({
-                        likes: newLikes,
-                        dislikes: newDislikes,
-                        liked: isLiked,
-                        disliked: isDisliked
-                    }));
+                    localStorage.setItem(
+                        `post-${postId}-reactions`,
+                        JSON.stringify({
+                            likes: newLikes,
+                            dislikes: newDislikes,
+                            liked: isLiked,
+                            disliked: isDisliked,
+                        })
+                    );
 
                     return {
                         ...post,
@@ -85,7 +88,7 @@ export const useStore = create<PostState>((set) => ({
                             dislikes: newDislikes,
                         },
                         liked: isLiked,
-                        disliked: isDisliked
+                        disliked: isDisliked,
                     };
                 }
                 return post;
@@ -101,16 +104,21 @@ export const useStore = create<PostState>((set) => ({
                 if (post.id === postId) {
                     const isDisliked = !post.disliked;
                     const isLiked = false; // Снимаем лайк, если он стоял
-                    const newDislikes = isDisliked ? post.reactions.dislikes + 1 : post.reactions.dislikes - 1;
+                    const newDislikes = isDisliked
+                        ? post.reactions.dislikes + 1
+                        : post.reactions.dislikes - 1;
                     const newLikes = post.reactions.likes - (post.liked ? 1 : 0);
 
                     // Сохраняем состояние в localStorage
-                    localStorage.setItem(`post-${postId}-reactions`, JSON.stringify({
-                        likes: newLikes,
-                        dislikes: newDislikes,
-                        liked: isLiked,
-                        disliked: isDisliked
-                    }));
+                    localStorage.setItem(
+                        `post-${postId}-reactions`,
+                        JSON.stringify({
+                            likes: newLikes,
+                            dislikes: newDislikes,
+                            liked: isLiked,
+                            disliked: isDisliked,
+                        })
+                    );
 
                     return {
                         ...post,
@@ -119,7 +127,7 @@ export const useStore = create<PostState>((set) => ({
                             dislikes: newDislikes,
                         },
                         liked: isLiked,
-                        disliked: isDisliked
+                        disliked: isDisliked,
                     };
                 }
                 return post;
@@ -142,7 +150,7 @@ export const useStore = create<PostState>((set) => ({
                             dislikes: dislikes ?? post.reactions.dislikes,
                         },
                         liked,
-                        disliked
+                        disliked,
                     };
                 }
                 return { ...post, liked: false, disliked: false };
@@ -152,4 +160,3 @@ export const useStore = create<PostState>((set) => ({
         });
     },
 }));
-

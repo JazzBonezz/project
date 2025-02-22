@@ -1,6 +1,6 @@
-import styles from './LineGraph.module.css'
+import styles from './LineGraph.module.css';
 import { Line } from 'react-chartjs-2';
-import {usePostsData} from "../../hooks/useChartData.ts";
+import { usePostsData } from '../../hooks/useChartData.ts';
 
 import {
     Chart as ChartJS,
@@ -62,12 +62,12 @@ const LineGraph = () => {
         plugins: {
             legend: {
                 position: 'bottom' as const,
-            }
-        }
-    }
+            },
+        },
+    };
 
     return (
-        <div className={styles["line-graph"]}>
+        <div className={styles['line-graph']}>
             <Line data={lineData} options={lineOptions} />
         </div>
     );

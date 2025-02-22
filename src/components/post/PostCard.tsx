@@ -1,9 +1,8 @@
 import styles from './Post.module.css';
-import { GoCommentDiscussion } from "react-icons/go";
-import { useNavigate } from "react-router-dom";
-import LikeButton from "../../shared/likeButton/LikeButton.tsx";
-import DislikeButton from "../../shared/dislikeButton/DislikeButton.tsx";
-
+import { GoCommentDiscussion } from 'react-icons/go';
+import { useNavigate } from 'react-router-dom';
+import LikeButton from '../../shared/likeButton/LikeButton.tsx';
+import DislikeButton from '../../shared/dislikeButton/DislikeButton.tsx';
 
 type PostCardProps = {
     title: string;
@@ -29,8 +28,11 @@ const PostCard = (props: PostCardProps) => {
                     <div className={styles.postCard__reactions}>
                         <LikeButton postId={props.id} />
                         <DislikeButton postId={props.id} />
-                        <button className={styles.postCard__reactionButton} onClick={() => navigate(`/post/${props.id}`)}>
-                            <GoCommentDiscussion  className={styles.postCard__comment} />
+                        <button
+                            className={styles.postCard__reactionButton}
+                            onClick={() => navigate(`/post/${props.id}`)}
+                        >
+                            <GoCommentDiscussion className={styles.postCard__comment} />
                         </button>
                         <div className={styles.postCard__views}>views: {props.views}</div>
                     </div>

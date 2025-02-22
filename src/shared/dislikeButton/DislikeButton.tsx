@@ -1,6 +1,6 @@
-import { AiOutlineDislike, AiFillDislike } from "react-icons/ai";
-import { useStore } from "../../store/store";
-import styles from './DislikeButton.module.css'
+import { AiOutlineDislike, AiFillDislike } from 'react-icons/ai';
+import { useStore } from '../../store/store';
+import styles from './DislikeButton.module.css';
 
 type DislikeButtonProps = {
     postId: number;

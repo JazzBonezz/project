@@ -2,9 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import LogInForm from '../components/logInForm/LogInForm.tsx';
 import RegisterForm from '../components/registerForm/RegisterForm.tsx';
-import FeedPage from "../pages/feedPage/FeedPage.tsx";
-import AnalyticsPage from "../pages/analyticsPage/AnalyticsPage.tsx";
-import PostDetail from "../pages/postDetail/PostDetail.tsx";
+import FeedPage from '../pages/feedPage/FeedPage.tsx';
+import AnalyticsPage from '../pages/analyticsPage/AnalyticsPage.tsx';
+import PostDetail from '../pages/postDetail/PostDetail.tsx';
 
 const router = createBrowserRouter([
     {
@@ -25,17 +25,14 @@ const router = createBrowserRouter([
             },
             {
                 path: '/analytics',
-                element: <AnalyticsPage/>,
+                element: <AnalyticsPage />,
             },
             {
                 path: '/post/:id',
-                element: <PostDetail/>,
+                element: <PostDetail />,
             },
         ],
-
     },
-
-
 ]);
 
 export default router;

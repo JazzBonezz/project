@@ -18,16 +18,15 @@ export const usePostsData = () => {
         const loadData = async () => {
             try {
                 const posts: PostData[] = await fetchPosts();
-
-                setLikes(posts.map(post => post.reactions.likes));
-                setDislikes(posts.map(post => post.reactions.dislikes));
-                setViews(posts.map(post => post.views));
+                setLikes(posts.map((post) => post.reactions.likes));
+                setDislikes(posts.map((post) => post.reactions.dislikes));
+                setViews(posts.map((post) => post.views));
             } catch (error) {
-                    console.error('Chart loading error:', error);
+                console.error('Chart loading error:', error);
             }
         };
 
-        loadData().catch(error => console.error('loadData error:', error));
+        loadData().catch((error) => console.error('loadData error:', error));
     }, []);
 
     return { likes, dislikes, views };

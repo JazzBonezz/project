@@ -9,7 +9,6 @@
     transition: 0.1s ease;
     gap: 2rem;
     position: relative;
-
 }
 
 .postCard:hover {
@@ -36,7 +35,6 @@
     flex-direction: row;
 }
 
-
 .postCard__reactionButton {
     background-color: transparent;
     border-radius: 2px;
@@ -55,7 +53,6 @@
     text-align: center;
 }
 
-
 .postCard__reactionButton:active {
     color: #181c1f;
 }
@@ -69,7 +66,6 @@
 .postCard__comment {
     font-size: 1.5rem;
 }
-
 
 /* ------------------------------------------------------------- */
 

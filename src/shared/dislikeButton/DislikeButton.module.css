@@ -12,12 +12,9 @@
 }
 
 .dislikeButton:hover {
-
-
     color: white;
     background: #d93900;
 }
-
 
 .active {
     color: red;

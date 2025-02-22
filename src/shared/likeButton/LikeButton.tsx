@@ -1,6 +1,6 @@
-import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { useStore } from "../../store/store";
-import styles from "./LikeButton.module.css"
+import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
+import { useStore } from '../../store/store';
+import styles from './LikeButton.module.css';
 
 type LikeButtonProps = {
     postId: number;

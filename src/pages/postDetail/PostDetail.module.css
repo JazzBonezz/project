@@ -36,7 +36,6 @@
     text-align: start;
 }
 
-
 .bottomSection {
     display: flex;
     justify-content: space-between;
@@ -89,7 +88,9 @@
     font-size: 16px;
     background: transparent;
     color: white;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
     resize: none;
 }
 

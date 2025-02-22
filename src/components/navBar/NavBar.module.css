@@ -33,7 +33,7 @@
     color: white;
     border-radius: 0.4em;
     padding: 1em;
-    transition: .3s ease;
+    transition: 0.3s ease;
     width: fit-content;
 
     display: flex;
@@ -51,7 +51,6 @@
 }
 
 .navBar-link:active {
-
 }
 
 .logo {
@@ -63,15 +62,12 @@
     display: none;
 }
 
-
 @media screen and (max-width: 768px) {
     .burger {
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 3rem;
-
-
     }
 
     .navList {

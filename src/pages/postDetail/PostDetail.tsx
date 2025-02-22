@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import styles from './PostDetail.module.css';
-import { useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
-import { useStore } from "../../store/store.ts";
-import LikeButton from "../../shared/likeButton/LikeButton.tsx";
-import DislikeButton from "../../shared/dislikeButton/DislikeButton.tsx";
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+import { useStore } from '../../store/store.ts';
+import LikeButton from '../../shared/likeButton/LikeButton.tsx';
+import DislikeButton from '../../shared/dislikeButton/DislikeButton.tsx';
 
 const PostDetails = () => {
     const { id } = useParams<{ id: string }>();
@@ -22,7 +22,7 @@ const PostDetails = () => {
         }
     }, [posts, fetchPosts]);
 
-    const post = posts.find(p => p.id === Number(id));
+    const post = posts.find((p) => p.id === Number(id));
 
     if (isLoading) return <p>Загрузка...</p>;
     if (error) return <p>Ошибка: {error}</p>;
@@ -31,10 +31,7 @@ const PostDetails = () => {
     return (
         <>
             <div className={styles.postDetails}>
-                <button
-                    className={styles.backButton}
-                    onClick={() => navigate('/feed')}
-                >
+                <button className={styles.backButton} onClick={() => navigate('/feed')}>
                     <FaArrowLeft />
                     Back to posts
                 </button>
@@ -48,7 +45,6 @@ const PostDetails = () => {
                     </div>
                     <p className={styles.views}>Views: {post.views}</p>
                 </div>
-
             </div>
             <hr className={styles.divider} />
             <div className={styles.commentSection}>
