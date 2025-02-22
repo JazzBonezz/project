@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import styles from './PostDetail.module.css';
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { useStore} from "../../store/store.ts";
+import LikeButton from "../../shared/likeButton/LikeButton.tsx";
+import DislikeButton from "../../shared/dislikeButton/DislikeButton.tsx";
 
 
 const PostDetails = () => {
@@ -37,12 +38,8 @@ const PostDetails = () => {
                 <p className={styles['post-details__body']}>{post.body}</p>
 
                 <div className={styles['post-details__reactions']}>
-                    <button className={styles['post-details__likes']}>
-                        <AiOutlineLike /> {post.reactions.likes}
-                    </button>
-                    <button className={styles['post-details__dislikes']}>
-                        <AiOutlineDislike /> {post.reactions.dislikes}
-                    </button>
+                    <LikeButton postId={post.id} />
+                    <DislikeButton postId={post.id} />
                 </div>
                 <p className={styles['post-details__views']}>Views: {post.views}</p>
             </div>

@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
-import { fetchPosts } from '../../api/api.ts';
 import styles from './PieGraph.module.css'
+import { usePostsData } from "../../hooks/useChartData.ts";
 
 import {
     Chart as ChartJS,
@@ -26,34 +25,8 @@ ChartJS.register(
     Legend
 );
 
-type PostData = {
-    reactions: {
-        likes: number;
-        dislikes: number;
-    };
-    views: number;
-};
-
 const PieGraph = () => {
-    const [likes, setLikes] = useState<number[]>([]);
-    const [dislikes, setDislikes] = useState<number[]>([]);
-    const [views, setViews] = useState<number[]>([]);
-
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                const posts: PostData[] = await fetchPosts();
-
-                setLikes(posts.map(post => post.reactions.likes));
-                setDislikes(posts.map(post => post.reactions.dislikes));
-                setViews(posts.map(post => post.views));
-            } catch (error) {
-                console.error('Ошибка загрузки данных для аналитики:', error);
-            }
-        };
-
-        loadData().catch(error => console.error('loadData error:', error));
-    }, []);
+    const { likes, dislikes, views } = usePostsData();
 
     const pieData = {
         labels: ['Likes', 'Dislikes', 'Views'],
@@ -85,9 +58,7 @@ const PieGraph = () => {
 
     return (
         <div className={styles["pie-graph"]}>
-
                     <Pie data={pieData} options={pieOptions} />
-
         </div>
     );
 };

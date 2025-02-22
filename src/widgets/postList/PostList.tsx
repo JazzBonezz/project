@@ -1,6 +1,7 @@
 import PostCard from "../../components/post/PostCard.tsx";
 import {useEffect} from "react";
 import { useStore } from "../../store/store.ts";
+import { Spin } from 'antd';
 
 const PostList = () => {
 
@@ -18,7 +19,7 @@ const PostList = () => {
         loadPosts().catch(console.error);
     }, [fetchPosts]);
 
-    if (isLoading) return <p>Загрузка...</p>;
+    if (isLoading) return <Spin/>;
     if (error) return <p>Ошибка: {error}</p>;
 
     return (
