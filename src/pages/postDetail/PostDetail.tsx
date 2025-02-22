@@ -1,42 +1,28 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { fetchPosts } from "../../api/api.ts"; // Если данные доступны глобально, использовать контекст
+import { useEffect } from "react";
 import styles from './PostDetail.module.css';
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { useStore} from "../../store/store.ts";
 
-type PostType = {
-    id: number;
-    title: string;
-    body: string;
-    views: number;
-    reactions: {
-        likes: number;
-        dislikes: number;
-    };
-};
 
 const PostDetails = () => {
     const { id } = useParams<{ id: string }>();
-    const [post, setPost] = useState<PostType | null>(null);
-
+    const { posts, fetchPosts, isLoading, error } = useStore();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const loadPost = async () => {
-            try {
-                const posts = await fetchPosts();
-                const selectedPost = posts.find((p: PostType) => p.id === Number(id));
-                setPost(selectedPost || null);
-            } catch (error) {
-                console.error("Error loading post details", error);
-            }
-        };
-        loadPost();
-    }, [id]);
+        if (posts.length === 0) {
+            fetchPosts();
+        }
+    }, [posts, fetchPosts]);
 
-    if (!post) return <p>Post not found</p>;
+    const post = posts.find(p => p.id === Number(id)); // Тут чат помог
+
+    if (isLoading) return <p>Загрузка...</p>;
+    if (error) return <p>Ошибка: {error}</p>;
+    if (!post) return <p>Пост не найден</p>;
 
     return (
         <>

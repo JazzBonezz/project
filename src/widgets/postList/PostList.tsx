@@ -1,38 +1,29 @@
 import PostCard from "../../components/post/PostCard.tsx";
-import {useEffect, useState} from "react";
-import {fetchPosts} from "../../api/api.ts";
-
-type PostType = {
-    id: number;
-    title: string;
-    body: string;
-    views: number;
-    reactions: {
-        likes: number;
-        dislikes: number;
-    }
-}
+import {useEffect} from "react";
+import { useStore } from "../../store/store.ts";
 
 const PostList = () => {
 
-    const [post, setPost] = useState<PostType[]>([]);
+    const { fetchPosts, posts, isLoading, error } = useStore();
 
     useEffect(() => {
         const loadPosts = async () => {
             try {
-                const data = await fetchPosts();
-                setPost(data);
+                await fetchPosts();
+            } catch (err) {
+                console.error("Ошибка при загрузке постов:", err);
             }
-            catch (error) {
-                console.error('Error fetching post', error);
-            }
-        }
-        loadPosts();
-    }, [])
+        };
+
+        loadPosts().catch(console.error);
+    }, [fetchPosts]);
+
+    if (isLoading) return <p>Загрузка...</p>;
+    if (error) return <p>Ошибка: {error}</p>;
 
     return (
         <div>
-            {post.map(post => (
+            {posts.map(post => (
                 <div key={post.id}>
                     <PostCard
                         id={post.id}
@@ -43,10 +34,7 @@ const PostList = () => {
                         dislikes={post.reactions.dislikes}
                     />
                 </div>
-
-
             ))}
-
         </div>
     );
 };
