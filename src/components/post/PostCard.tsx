@@ -30,7 +30,7 @@ const PostCard = (props: PostCardProps) => {
                         <LikeButton postId={props.id} />
                         <DislikeButton postId={props.id} />
                         <button className={styles.postCard__reactionButton} onClick={() => navigate(`/post/${props.id}`)}>
-                            <GoCommentDiscussion />
+                            <GoCommentDiscussion  className={styles.postCard__comment} />
                         </button>
                         <div className={styles.postCard__views}>views: {props.views}</div>
                     </div>

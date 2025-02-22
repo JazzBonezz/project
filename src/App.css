@@ -13,10 +13,10 @@ button {
   flex: 1;
 }
 
-button:hover {
-  background-color: white;
-  color: gray;
-}
+/*button:hover {*/
+/*  background-color: white;*/
+/*  color: gray;*/
+/*}*/
 
 button:active {
   transform: scale(0.95);
@@ -30,14 +30,14 @@ button {
   flex: 1;
 }
 
-button:hover:not(:disabled) {
-  background-color: white;
-  color: gray;
-}
+/*button:hover:not(:disabled) {*/
+/*  background-color: white;*/
+/*  color: gray;*/
+/*}*/
 
-button:active:not(:disabled) {
-  transform: scale(0.95);
-}
+/*button:active:not(:disabled) {*/
+/*  transform: scale(0.95);*/
+/*}*/
 
 button:disabled {
   background-color: #cccccc;

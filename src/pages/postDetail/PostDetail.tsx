@@ -3,10 +3,9 @@ import { useEffect } from "react";
 import styles from './PostDetail.module.css';
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { useStore} from "../../store/store.ts";
+import { useStore } from "../../store/store.ts";
 import LikeButton from "../../shared/likeButton/LikeButton.tsx";
 import DislikeButton from "../../shared/dislikeButton/DislikeButton.tsx";
-
 
 const PostDetails = () => {
     const { id } = useParams<{ id: string }>();
@@ -14,12 +13,16 @@ const PostDetails = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         if (posts.length === 0) {
             fetchPosts();
         }
     }, [posts, fetchPosts]);
 
-    const post = posts.find(p => p.id === Number(id)); // Тут чат помог
+    const post = posts.find(p => p.id === Number(id));
 
     if (isLoading) return <p>Загрузка...</p>;
     if (error) return <p>Ошибка: {error}</p>;
@@ -27,28 +30,32 @@ const PostDetails = () => {
 
     return (
         <>
-            <div className={styles['post-details']}>
+            <div className={styles.postDetails}>
                 <button
-                    className={styles['post-details__back-button']}
+                    className={styles.backButton}
                     onClick={() => navigate('/feed')}
                 >
                     <FaArrowLeft />
+                    Back to posts
                 </button>
-                <h1 className={styles['post-details__title']}>{post.title}</h1>
-                <p className={styles['post-details__body']}>{post.body}</p>
+                <h1 className={styles.title}>{post.title}</h1>
+                <p className={styles.body}>{post.body}</p>
 
-                <div className={styles['post-details__reactions']}>
-                    <LikeButton postId={post.id} />
-                    <DislikeButton postId={post.id} />
+                <div className={styles.bottomSection}>
+                    <div className={styles.reactions}>
+                        <LikeButton postId={post.id} />
+                        <DislikeButton postId={post.id} />
+                    </div>
+                    <p className={styles.views}>Views: {post.views}</p>
                 </div>
-                <p className={styles['post-details__views']}>Views: {post.views}</p>
+
             </div>
-            <hr className={styles['post-details__divider']} />
-            <div className={styles['comment-section']}>
-                <p className={styles['comment-section__no-comments']}>No comments</p>
-                <div className={styles['comment-section__input-container']}>
-                    <textarea className={styles['comment-section__textarea']}></textarea>
-                    <button className={styles['comment-section__submit-button']}>Submit</button>
+            <hr className={styles.divider} />
+            <div className={styles.commentSection}>
+                <p className={styles.noComments}>No comments</p>
+                <div className={styles.inputContainer}>
+                    <textarea className={styles.textarea}></textarea>
+                    <button className={styles.submitButton}>Submit</button>
                 </div>
             </div>
         </>

@@ -3,6 +3,7 @@ import {useEffect} from "react";
 import { useStore } from "../../store/store.ts";
 import { Spin } from 'antd';
 
+
 const PostList = () => {
 
     const { fetchPosts, posts, isLoading, error } = useStore();
@@ -19,7 +20,7 @@ const PostList = () => {
         loadPosts().catch(console.error);
     }, [fetchPosts]);
 
-    if (isLoading) return <Spin/>;
+    if (isLoading) return <Spin style={{ color: "red" }}/>;
     if (error) return <p>Ошибка: {error}</p>;
 
     return (

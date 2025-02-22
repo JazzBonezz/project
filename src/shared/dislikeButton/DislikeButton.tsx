@@ -1,5 +1,6 @@
 import { AiOutlineDislike, AiFillDislike } from "react-icons/ai";
 import { useStore } from "../../store/store";
+import styles from './DislikeButton.module.css'
 
 type DislikeButtonProps = {
     postId: number;
@@ -12,8 +13,8 @@ const DislikeButton = ({ postId }: DislikeButtonProps) => {
     if (!post) return null;
 
     return (
-        <button onClick={() => dislikePost(postId)}>
-            {post.disliked ? <AiFillDislike style={{ color: "red" }} /> : <AiOutlineDislike />}
+        <button onClick={() => dislikePost(postId)} className={styles.dislikeButton}>
+            {post.disliked ? <AiFillDislike className={styles.active} /> : <AiOutlineDislike />}
             {post.reactions.dislikes}
         </button>
     );

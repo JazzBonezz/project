@@ -1,0 +1,21 @@
+.likeButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.2rem;
+    border-radius: 0.2rem;
+    font-size: 1.5rem;
+}
+
+.likeButton:hover {
+    color: white;
+    background: #d93900;
+}
+
+.active {
+    color: white;
+}
