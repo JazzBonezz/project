@@ -1,7 +1,10 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
+// Несколько дней мучился с Redux. В итоге решил временно забить на него и сделать всё на Zustand
+
 type PostType = {
+    tags: string[];
     id: number;
     title: string;
     body: string;
@@ -30,7 +33,9 @@ export const useStore = create<PostState>((set) => ({
     error: null,
 
     fetchPosts: async () => {
-        set({ isLoading: true });
+        set({
+            isLoading: true,
+        });
         try {
             const response = await axios.get('https://dummyjson.com/posts');
             const posts = response.data.posts;
@@ -49,10 +54,17 @@ export const useStore = create<PostState>((set) => ({
                         disliked,
                     };
                 }
-                return { ...post, liked: false, disliked: false };
+                return {
+                    ...post,
+                    liked: false,
+                    disliked: false,
+                };
             });
 
-            set({ posts: updatedPosts, isLoading: false });
+            set({
+                posts: updatedPosts,
+                isLoading: false,
+            });
         } catch (error) {
             set({
                 error: error instanceof Error ? error.message : 'Unknown error',
@@ -66,11 +78,9 @@ export const useStore = create<PostState>((set) => ({
             const updatedPosts = state.posts.map((post) => {
                 if (post.id === postId) {
                     const isLiked = !post.liked;
-                    const isDisliked = false; // Снимаем дизлайк, если он стоял
+                    const isDisliked = false;
                     const newLikes = isLiked ? post.reactions.likes + 1 : post.reactions.likes - 1;
                     const newDislikes = post.reactions.dislikes - (post.disliked ? 1 : 0);
-
-                    // Сохраняем состояние в localStorage
                     localStorage.setItem(
                         `post-${postId}-reactions`,
                         JSON.stringify({
@@ -94,7 +104,9 @@ export const useStore = create<PostState>((set) => ({
                 return post;
             });
 
-            return { posts: updatedPosts };
+            return {
+                posts: updatedPosts,
+            };
         });
     },
 
@@ -103,13 +115,12 @@ export const useStore = create<PostState>((set) => ({
             const updatedPosts = state.posts.map((post) => {
                 if (post.id === postId) {
                     const isDisliked = !post.disliked;
-                    const isLiked = false; // Снимаем лайк, если он стоял
+                    const isLiked = false;
                     const newDislikes = isDisliked
                         ? post.reactions.dislikes + 1
                         : post.reactions.dislikes - 1;
                     const newLikes = post.reactions.likes - (post.liked ? 1 : 0);
 
-                    // Сохраняем состояние в localStorage
                     localStorage.setItem(
                         `post-${postId}-reactions`,
                         JSON.stringify({
@@ -119,7 +130,6 @@ export const useStore = create<PostState>((set) => ({
                             disliked: isDisliked,
                         })
                     );
-
                     return {
                         ...post,
                         reactions: {
@@ -133,7 +143,9 @@ export const useStore = create<PostState>((set) => ({
                 return post;
             });
 
-            return { posts: updatedPosts };
+            return {
+                posts: updatedPosts,
+            };
         });
     },
 
@@ -153,10 +165,16 @@ export const useStore = create<PostState>((set) => ({
                         disliked,
                     };
                 }
-                return { ...post, liked: false, disliked: false };
+                return {
+                    ...post,
+                    liked: false,
+                    disliked: false,
+                };
             });
 
-            return { posts: updatedPosts };
+            return {
+                posts: updatedPosts,
+            };
         });
     },
 }));

@@ -1,11 +1,10 @@
-// App.tsx
 import './App.css';
-import MainLayout from './pages/mainLayout/MainLayout.tsx';
+import MainPage from './pages/mainPage/MainPage.tsx';
 
 function App() {
     return (
         <>
-            <MainLayout />
+            <MainPage />
         </>
     );
 }

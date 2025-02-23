@@ -1,6 +1,6 @@
 import styles from './BarGraph.module.css';
 import { Bar } from 'react-chartjs-2';
-import { usePostsData } from '../../hooks/useChartData.ts';
+import { useChartData } from '../../hooks/useChartData.ts';
 
 import {
     Chart as ChartJS,
@@ -13,6 +13,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { useMemo } from 'react';
 
 ChartJS.register(
     LineElement,
@@ -26,8 +27,11 @@ ChartJS.register(
 );
 
 const BarGraph = () => {
-    const { likes, dislikes, views } = usePostsData();
-    const labels = likes.map((_, index) => `Post ${index + 1}`);
+    const { likes, dislikes, views } = useChartData();
+
+    const labels = useMemo(() => {
+        return likes.map((_, index) => `Post ${index + 1}`);
+    }, [likes]);
 
     const barData = {
         labels,
@@ -61,7 +65,7 @@ const BarGraph = () => {
     };
 
     return (
-        <div className={styles['bar-graph']}>
+        <div className={styles.barGraph}>
             <Bar data={barData} options={barOptions} />
         </div>
     );

@@ -5,11 +5,11 @@ import styles from './AnalyticsPage.module.css';
 
 const AnalyticsPage = () => {
     return (
-        <div className={styles['analytics-page']}>
+        <div className={styles.analyticsPage}>
             <LineGraph />
-            <hr className={styles['analytics-page__line']} />
+            <hr className={styles.analyticsPage__line} />
             <PieGraph />
-            <hr className={styles['analytics-page__line']} />
+            <hr className={styles.analyticsPage__line} />
             <BarGraph />
         </div>
     );

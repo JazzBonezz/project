@@ -1,6 +1,6 @@
 import { Pie } from 'react-chartjs-2';
 import styles from './PieGraph.module.css';
-import { usePostsData } from '../../hooks/useChartData.ts';
+import { useChartData } from '../../hooks/useChartData.ts';
 
 import {
     Chart as ChartJS,
@@ -26,7 +26,7 @@ ChartJS.register(
 );
 
 const PieGraph = () => {
-    const { likes, dislikes, views } = usePostsData();
+    const { likes, dislikes, views } = useChartData();
 
     const pieData = {
         labels: ['Likes', 'Dislikes', 'Views'],

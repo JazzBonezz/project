@@ -1,6 +1,6 @@
 import styles from './LineGraph.module.css';
 import { Line } from 'react-chartjs-2';
-import { usePostsData } from '../../hooks/useChartData.ts';
+import { useChartData } from '../../hooks/useChartData.ts';
 
 import {
     Chart as ChartJS,
@@ -26,7 +26,7 @@ ChartJS.register(
 );
 
 const LineGraph = () => {
-    const { likes, dislikes, views } = usePostsData();
+    const { likes, dislikes, views } = useChartData();
     const labels = likes.map((_, index) => `Post ${index + 1}`);
 
     const lineData = {
@@ -67,7 +67,7 @@ const LineGraph = () => {
     };
 
     return (
-        <div className={styles['line-graph']}>
+        <div className={styles.lineGraph}>
             <Line data={lineData} options={lineOptions} />
         </div>
     );

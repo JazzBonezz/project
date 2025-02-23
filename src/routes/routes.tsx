@@ -4,7 +4,7 @@ import LogInForm from '../components/logInForm/LogInForm.tsx';
 import RegisterForm from '../components/registerForm/RegisterForm.tsx';
 import FeedPage from '../pages/feedPage/FeedPage.tsx';
 import AnalyticsPage from '../pages/analyticsPage/AnalyticsPage.tsx';
-import PostDetail from '../pages/postDetail/PostDetail.tsx';
+import PostDetail from '../pages/postPage/PostPage.tsx';
 
 const router = createBrowserRouter([
     {

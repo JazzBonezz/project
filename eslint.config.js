@@ -7,7 +7,9 @@ import prettier from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 
 export default tseslint.config(
-    { ignores: ['dist', 'node_modules', 'build', '.next', 'out', 'coverage'] },
+    {
+        ignores: ['dist', 'node_modules', 'build', '.next', 'out', 'coverage'],
+    },
     {
         extends: [
             js.configs.recommended,
@@ -26,8 +28,20 @@ export default tseslint.config(
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
-            'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-            'prettier/prettier': ['error', { endOfLine: 'lf', singleQuote: true, semi: true }],
+            'react-refresh/only-export-components': [
+                'warn',
+                {
+                    allowConstantExport: true,
+                },
+            ],
+            'prettier/prettier': [
+                'error',
+                {
+                    endOfLine: 'lf',
+                    singleQuote: true,
+                    semi: true,
+                },
+            ],
             semi: ['error', 'always'],
         },
         settings: {

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import styles from './PostDetail.module.css';
+import styles from './PostPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useStore } from '../../store/store.ts';
@@ -8,10 +8,13 @@ import LikeButton from '../../shared/likeButton/LikeButton.tsx';
 import DislikeButton from '../../shared/dislikeButton/DislikeButton.tsx';
 
 const PostDetails = () => {
-    const { id } = useParams<{ id: string }>();
+    const { id } = useParams<{
+        id: string;
+    }>();
     const { posts, fetchPosts, isLoading, error } = useStore();
     const navigate = useNavigate();
 
+    // Скролл постоянно опускается при открытии страницы. В интернете нашёл такое решение.
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -50,7 +53,7 @@ const PostDetails = () => {
             <div className={styles.commentSection}>
                 <p className={styles.noComments}>No comments</p>
                 <div className={styles.inputContainer}>
-                    <textarea className={styles.textarea}></textarea>
+                    <input className={styles.textarea}></input>
                     <button className={styles.submitButton}>Submit</button>
                 </div>
             </div>

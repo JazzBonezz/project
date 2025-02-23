@@ -1,6 +1,8 @@
 import styles from './LogInForm.module.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
+import { usernameValidation, passwordValidation } from '../../utils/validation/validation.ts';
 
 type Inputs = {
     username: string;
@@ -28,77 +30,40 @@ const LogInForm = () => {
                 data.password === parsedUserData.password
             ) {
                 localStorage.setItem('username', data.username);
-
-                window.dispatchEvent(new Event('storage'));
-
                 navigate('/feed');
+                window.location.reload(); // лучше я ничего не придумал
             } else {
-                alert('Invalid username or password');
+                message.error('Invalid username or password');
             }
         } else {
-            alert('User not found');
+            message.error('User not found');
         }
     };
 
     return (
-        <form className={styles['login-form']} onSubmit={handleSubmit(onSubmit)}>
+        <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
             <h1>Login</h1>
-            <div className={styles['inputs']}>
+            <div className={styles.inputs}>
                 <label>
                     Username:
                     <br />
-                    <input
-                        type="text"
-                        {...register('username', {
-                            required: 'Enter name!',
-                            minLength: {
-                                value: 3,
-                                message: 'Name must be at least 3 characters long',
-                            },
-                            maxLength: {
-                                value: 20,
-                                message: 'Name must be no more than 20 characters long',
-                            },
-                            pattern: {
-                                value: /^[A-Za-z]+$/i,
-                                message: 'Name must contain only letters',
-                            },
-                        })}
-                    />
+                    <input type="text" {...register('username', usernameValidation)} />
                 </label>
 
                 <label>
                     Password:
                     <br />
-                    <input
-                        type="password"
-                        {...register('password', {
-                            required: 'Enter password',
-                            minLength: {
-                                value: 8,
-                                message: 'Password must be at least 8 characters long',
-                            },
-                            maxLength: {
-                                value: 20,
-                                message: 'Password must be no more than 20 characters long',
-                            },
-                            pattern: {
-                                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-                                message:
-                                    'Password must contain at least one letter, one number, and one special character',
-                            },
-                        })}
-                    />
+                    <input type="password" {...register('password', passwordValidation)} />
                 </label>
             </div>
 
-            <div className={styles['buttons']}>
+            <div className={styles.buttons}>
                 <button type="submit" disabled={!isValid}>
                     Submit
                 </button>
             </div>
 
-            <div className={styles['error-text']}>
+            <div className={styles.errorText}>
                 {errors.password && <p role="alert">{errors.password.message}</p>}
                 {errors.username && <p role="alert">{errors.username.message}</p>}
             </div>

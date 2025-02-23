@@ -1,3 +1,27 @@
+.tagContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 80%;
+    height: 5rem;
+    margin: 1rem auto 0 auto;
+    text-align: center;
+}
+
+.styles.tagContainer__title {
+    font-size: 4rem;
+}
+
 .loading {
     color: #d93900;
+}
+
+.tagButton {
+    background-color: #1a1a1a;
+}
+
+.active {
+    background-color: #d93900;
 }

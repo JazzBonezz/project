@@ -1,4 +1,4 @@
-.login-form {
+.loginForm {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -57,14 +57,14 @@ input {
     justify-content: space-between;
 }
 
-.error-text {
+.errorText {
     margin-top: 0;
     text-align: start;
     border: 1px solid gray;
     border-radius: 7px;
     width: 100%;
 }
-.error-text p {
+.errorText p {
     color: #a81923;
     font-size: 0.8rem;
     margin: 0;
