@@ -14,7 +14,7 @@ export default tseslint.config(
         extends: [
             js.configs.recommended,
             ...tseslint.configs.recommended,
-            prettier, // Отключает конфликты стилей между ESLint и Prettier
+            prettier,
         ],
         files: ['**/*.{ts,tsx}'],
         languageOptions: {
@@ -24,7 +24,7 @@ export default tseslint.config(
         plugins: {
             'react-hooks': reactHooks,
             'react-refresh': reactRefresh,
-            prettier: prettierPlugin, // Плагин Prettier
+            prettier: prettierPlugin,
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
